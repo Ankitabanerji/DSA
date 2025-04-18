@@ -1,45 +1,42 @@
 """
 Date: 18th Apr, 2025
-Given an array arr[] containing only non-negative integers, your task is to find a continuous subarray (a
-contiguous sequence of elements) whose sum equals a specified value target. You need to return the 1-based indices
-of the leftmost and rightmost elements of this subarray. You need to find the first subarray whose sum is equal to
-the target.
-Note: If no such array is possible then, return [-1].
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
 
-Examples:
-Input: arr[] = [1, 2, 3, 7, 5], target = 12
-Output: [2, 4]
-Explanation: The sum of elements from 2nd to 4th position is 12.
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
-Input: arr[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], target = 15
-Output: [1, 5]
-Explanation: The sum of elements from 1st to 5th position is 15.
+Example 2:
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
 
-Input: arr[] = [5, 3, 4], target = 2
-Output: [-1]
-Explanation: There is no subarray with sum 2."""
+Example 3:
+Input: nums = [3,3], target = 6
+Output: [0,1]
+ """
+
+import ast
 
 class Solution():
     def twoSum(self, arr, target):
-        left = 0
-        current_sum = 0
+        hashmap = {}
+        for i in range(len(arr)):
+            complement = target - arr[i]
 
-        for right in range(len(arr)):
-            current_sum += arr[right]
+            if complement in hashmap:
+                return [i, hashmap[complement]]
+            else:
+                hashmap[arr[i]] = i
 
-            while (current_sum >target) and (left<=right):
-                current_sum -= arr[left]
-                left +=1
-
-            if current_sum == target:
-                return [left+1, right+1]
-
-        return [-1]
+        return []
 
 
 if __name__ == '__main__':
-    arr = list(map(int,input("").strip().split()))
+    arr = ast.literal_eval(input())
     d = int(input().strip())
     ob= Solution()
     result = ob.twoSum(arr,d)
-    print(" ".join(map(str,result)))
+    print(result)
