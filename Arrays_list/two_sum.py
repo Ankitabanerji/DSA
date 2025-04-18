@@ -20,7 +20,7 @@ Output: [-1]
 Explanation: There is no subarray with sum 2."""
 
 class Solution():
-    def subarraySum(self, arr, target):
+    def twoSum(self, arr, target):
         left = 0
         current_sum = 0
 
@@ -41,5 +41,5 @@ if __name__ == '__main__':
     arr = list(map(int,input("").strip().split()))
     d = int(input().strip())
     ob= Solution()
-    result = ob.subarraySum(arr,d)
+    result = ob.twoSum(arr,d)
     print(" ".join(map(str,result)))
